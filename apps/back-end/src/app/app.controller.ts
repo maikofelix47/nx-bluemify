@@ -11,7 +11,7 @@ export class AppController {
     return this.appService.getData();
   }
   @Post()
-  addname(@Body() name: any) {
+  addname(@Body() name: { name: string }) {
     console.log('name', name);
     return name;
   }
