@@ -1,19 +1,18 @@
-import { Routes} from 'react-router-dom';
-import { useEffect, useState } from 'react';
+import { Routes, Route, Link } from 'react-router-dom';
 import Survey from './survey/survey';
+import Posts from './posts/posts';
 
 export function App() {
-  const [posts,setPosts] = useState([]);
-  useEffect(()=>{
-      fetch('http://localhost:8080/wp-json/wp/v2/posts').then((posts)=>{
-        console.log('posts',posts);
-      });
-  },[]);
   return (
     <div>
+      <nav>
+        <Link to='/'>Home</Link>
+        <Link to='/survey'>Survey</Link>
+      </nav>
       <h2>Bluemify</h2>
-      <Survey/>
       <Routes>
+      <Route path="/" element={<Posts />} />
+      <Route path="survey" element={<Survey />} />
       </Routes>
       {/* END: routes */}
     </div>
