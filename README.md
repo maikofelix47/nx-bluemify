@@ -6,6 +6,7 @@ This is an Nx monorepo containing the following
 2. NestJs Backend.
 3. PostgreSQL Database
 4. Prisma ORM
+5. Swagger API Docs
 
 ## Requirements
 
@@ -58,4 +59,8 @@ To run back-end tests run `npm run test:be`.
 
 To build front-end run `npm run build-prod:fe`.
 To build back-end run `npm run build-prod:be`.
-To build both front-end and backend run `npm run build-prod:all`
+To build both front-end and backend run `npm run build-prod:all`.
+
+# API Docs
+
+To access API Docs navigate to `http://localhost:3000/api-docs/`
