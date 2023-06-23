@@ -3,7 +3,7 @@
 This is an Nx monorepo containing the following
 
 1. React Front End.
-2. NestJs Backend.
+2. Express Backend.
 3. PostgreSQL Database
 4. Prisma ORM
 5. Swagger API Docs
@@ -40,15 +40,9 @@ To start the react project run `nx serve front-end` and navigate to `http://loca
 
 To add a new component run `nx g @nx/react:component <component-name> --project=front-end` or you can create the component manually.
 
-## NestJs Backend
+## Express Backend
 
-To start the NestJs service run `nx serve back-end`. It should serve `http://localhost:3000/api`.
-
-To generate a module `nx g @nx/nest:module <module-name> --project=back-end`.
-
-To generate a controller `nx g @nx/nest:controller <controller-name> --project=back-end`.
-
-To generate a service `nx g @nx/nest:service <service-name> --project=back-end`.
+To start the Express service run `nx serve back-end`. It should serve `http://localhost:3000/api`.
 
 ## Testing
 

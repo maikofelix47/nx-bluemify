@@ -3,33 +3,28 @@
  * This is only a minimal backend to get started.
  */
 
-import { Logger } from '@nestjs/common';
-import { NestFactory } from '@nestjs/core';
+import express from 'express';
+import * as path from 'path';
+import swaggerUi from 'swagger-ui-express';
+import swaggerDocument from './swagger.json';
 
-import { AppModule } from './app/app.module';
-import { SwaggerModule, DocumentBuilder } from '@nestjs/swagger';
+const app = express();
 
-async function bootstrap() {
-  const app = await NestFactory.create(AppModule);
-  const globalPrefix = 'api';
-  app.setGlobalPrefix(globalPrefix);
-  app.enableCors();
-  const port = 3000;
+app.use('/assets', express.static(path.join(__dirname, 'assets')));
+app.use('/docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
-  const config = new DocumentBuilder()
-    .setTitle('Bluemify API Docs')
-    .setDescription('The cats API description')
-    .setVersion('1.0')
-    .addTag('bluemify')
-    .build();
-  const document = SwaggerModule.createDocument(app, config);
+app.get('/api', (req, res) => {
+  res.send({ message: 'Test get request received!' });
+});
+app.post('/api', (req, res) => {
+  res.send({ message: 'Test post request received' });
+});
+app.post('/api/test-data', (req, res) => {
+  res.send({ message: 'Welcome to back-end!' });
+});
 
-  SwaggerModule.setup('api-docs', app, document);
-
-  await app.listen(port);
-  Logger.log(
-    `🚀 Application is running on: http://localhost:${port}/${globalPrefix}`
-  );
-}
-
-bootstrap();
+const port = process.env.PORT || 3000;
+const server = app.listen(port, () => {
+  console.log(`Listening at http://localhost:${port}/api`);
+});
+server.on('error', console.error);
